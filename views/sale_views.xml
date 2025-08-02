@@ -1,0 +1,77 @@
+<odoo>
+  <record id="action_sale_order_vo_tree" model="ir.actions.act_window">
+    <field name="name">Variation Orders</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('related_so_id','=',active_id)]</field>
+    <field name="context">{}</field>
+  </record>
+
+  <record id="action_open_related_so" model="ir.actions.act_window">
+    <field name="name">Parent Sale Order</field>
+    <field name="res_model">sale.order</field>
+    <field name="view_mode">form</field>
+    <field name="target">current</field>
+    <field name="context">{}</field>
+  </record>
+
+  <record id="view_order_form_vo" model="ir.ui.view">
+    <field name="name">sale.order.form.vo</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='partner_id']" position="after">
+        <field name="is_vo" modifiers="{'invisible': [('id','!=', False)]}" />
+      </xpath>
+
+      <xpath expr="//field[@name='client_order_ref']" position="after">
+        <field name="related_so_id"
+               modifiers="{'invisible': [('is_vo', '=', False)]}"
+               domain="[('state','not in',['draft','cancel']),('is_vo','=',False)]"/>
+      </xpath>
+
+      <xpath expr="//header" position="inside">
+        <button name="action_create_vo"
+                string="Create VO"
+                type="object"
+                class="btn-primary"
+                modifiers="{'invisible': ['|',('state','in',['draft','cancel']),('is_vo','=',True)]}"
+                invisible="is_vo"/>
+      </xpath>
+
+      <xpath expr="//div[contains(@class,'oe_button_box')]" position="inside">
+        <button name="%(sale_vo_management.action_sale_order_vo_tree)d"
+                type="action"
+                class="oe_stat_button"
+                modifiers="{'invisible': [('vo_ids','=',False)]}">
+          <field name="vo_ids" widget="statinfo"/>
+          <div>VOs</div>
+        </button>
+
+
+        <button name="action_open_related_so"
+                type="object"
+                class="oe_stat_button"
+                modifiers="{'invisible': [('is_vo','=',False)]}"
+                invisible="is_vo==False">
+          <div>Related SO</div>
+        </button>
+      </xpath>
+    </field>
+  </record>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</odoo>
+
