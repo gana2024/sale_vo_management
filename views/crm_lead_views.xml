@@ -9,7 +9,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-random"
-                    modifiers="{'invisible': [('vo_count', '=', 0)]}">
+                    invisible="vo_count == 0">
                 <field name="vo_count" widget="statinfo" string="VOs"/>
             </button>
         </xpath>
@@ -26,14 +26,10 @@
 
     <record id="action_vo_from_crm" model="ir.actions.act_window">
     <field name="name">VOs</field>
-    <field name="res_model">crm.lead</field>
+    <field name="res_model">sale.order</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">
-        [
-            ('is_vo', '=', True),
-            ('related_so_id.opportunity_id', '=', active_id)
-        ]
-    </field>
+    <field name="domain">[('is_vo','=', True), ('opportunity_id','=', active_id)]</field>
+
 </record>
 
 </odoo>

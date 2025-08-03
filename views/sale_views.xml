@@ -22,13 +22,14 @@
     <field name="arch" type="xml">
 
       <xpath expr="//field[@name='partner_id']" position="after">
-        <field name="is_vo" modifiers="{'invisible': [('id','!=', False)]}" />
+        <field name="is_vo"/>
       </xpath>
 
       <xpath expr="//field[@name='client_order_ref']" position="after">
         <field name="related_so_id"
-               modifiers="{'invisible': [('is_vo', '=', False)]}"
-               domain="[('state','not in',['draft','cancel']),('is_vo','=',False)]"/>
+               invisible="is_vo == False"
+               domain="[('state','not in',['draft','cancel']), ('is_vo','=', False)]"
+/>
       </xpath>
 
       <xpath expr="//header" position="inside">
@@ -36,15 +37,14 @@
                 string="Create VO"
                 type="object"
                 class="btn-primary"
-                modifiers="{'invisible': ['|',('state','in',['draft','cancel']),('is_vo','=',True)]}"
-                invisible="is_vo"/>
+                invisible="state in ['draft','cancel'] or is_vo == True"/>
       </xpath>
 
       <xpath expr="//div[contains(@class,'oe_button_box')]" position="inside">
         <button name="%(sale_vo_management.action_sale_order_vo_tree)d"
                 type="action"
                 class="oe_stat_button"
-                modifiers="{'invisible': [('vo_ids','=',False)]}">
+                invisible="vo_ids == False">
           <field name="vo_ids" widget="statinfo"/>
           <div>VOs</div>
         </button>
@@ -53,8 +53,7 @@
         <button name="action_open_related_so"
                 type="object"
                 class="oe_stat_button"
-                modifiers="{'invisible': [('is_vo','=',False)]}"
-                invisible="is_vo==False">
+                invisible="is_vo == False">
           <div>Related SO</div>
         </button>
       </xpath>

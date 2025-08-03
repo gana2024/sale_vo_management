@@ -10,8 +10,10 @@
     'version': '0.1',
     'depends': ['sale_management', 'crm','sale_crm'],
     'data': [
-         'security/ir.model.access.csv',
-         'views/sale_views.xml',
+        'security/groups.xml',
+        'security/ir.model.access.csv',
+        'security/ir_rule.xml',
+        'views/sale_views.xml',
         'views/crm_lead_views.xml',
 
     ],

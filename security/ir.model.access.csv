@@ -1,4 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_sale_order_vo,sale.order.vo,model_sale_order,,1,1,1,0
-access_crm_lead_vo_button,access.crm.lead.vo.button,model_crm_lead,,1,1,1,0
-
+access_vo_user_order,sale.order.user,model_sale_order,sale_vo_management.group_vo_user,1,1,1,0
+access_vo_manager_order,sale.order.manager,model_sale_order,sale_vo_management.group_vo_manager,1,1,1,1
+access_vo_user_crm,sale.order.user,model_crm_lead,sale_vo_management.group_vo_user,1,1,1,0
+access_vo_manager_crm,sale.order.manager,model_crm_lead,sale_vo_management.group_vo_manager,1,1,1,1

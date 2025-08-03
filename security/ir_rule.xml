@@ -1,4 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    
+  <data noupdate="0">
+
+    <record id="rule_vo_user_see_own" model="ir.rule">
+      <field name="name">VO User: View Own VOs</field>
+      <field name="model_id" ref="sale.model_sale_order"/>
+      <field name="groups" eval="[(4, ref('sale_vo_management.group_vo_user'))]"/>
+      <field name="domain_force">[('is_vo','=',True),('user_id','=',user.id)]</field>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_write" eval="0"/>
+      <field name="perm_create" eval="0"/>
+      <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="rule_vo_manager_all" model="ir.rule">
+      <field name="name">VO Manager: All VOs</field>
+      <field name="model_id" ref="sale.model_sale_order"/>
+      <field name="groups" eval="[(4, ref('sale_vo_management.group_vo_manager'))]"/>
+      <field name="domain_force">[('is_vo','=',True)]</field>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+    </record>
+
+  </data>
 </odoo>

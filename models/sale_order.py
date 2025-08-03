@@ -1,3 +1,11 @@
+##############################################################################
+#    Copyright (c) 2024 CDS Solutions SRL. (http://cds-solutions.co)
+#    Maintainer: Eng.Ramadan Khalil (<info@cdsegypt.com>)
+#    It is forbidden to publish, distribute, sublicense, or sell copies
+#    of the Software or modified copies of the Software.
+##############################################################################
+
+
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError, UserError
 from datetime import datetime, date

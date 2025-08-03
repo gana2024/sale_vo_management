@@ -1,0 +1,15 @@
+<odoo>
+  <data noupdate="0">
+
+    <record id="group_vo_user" model="res.groups">
+      <field name="name">VO User</field>
+      <field name="category_id" ref="base.module_category_sales"/>
+    </record>
+
+    <record id="group_vo_manager" model="res.groups">
+      <field name="name">VO Manager</field>
+      <field name="category_id" ref="base.module_category_sales"/>
+    </record>
+
+  </data>
+</odoo>
