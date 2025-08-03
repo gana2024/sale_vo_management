@@ -8,7 +8,6 @@ class SaleOrder(models.Model):
     is_vo = fields.Boolean(string="Is VO", default=False,readonly=True)
     related_so_id = fields.Many2one('sale.order', string="Related Sale Order")
     vo_ids = fields.One2many('sale.order', 'related_so_id', string="Variation Orders")
-    opportunity_id = fields.Many2one('crm.lead', string='Opportunity')
 
     def action_open_related_so(self):
         self.ensure_one()
