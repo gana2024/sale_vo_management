@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_sale_order_vo,sale.order.vo,model_sale_order,,1,1,1,0
+access_crm_lead_vo_button,access.crm.lead.vo.button,model_crm_lead,,1,1,1,0
 

@@ -50,6 +50,16 @@ class SaleOrder(models.Model):
             'context': context,
         }
 
+    def action_custom_button(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'sale.order',
+            'view_mode': 'tree,form',
+            'domain': [('is_vo', '=', True), ('related_so_id.opportunity_id', '=', self.id)],
+            'target': 'current',
+        }
+
+
 
 
 
